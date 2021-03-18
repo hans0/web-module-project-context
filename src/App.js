@@ -23,16 +23,18 @@ function App() {
 		])
 	};
 	const removeItem = itemId => {
-		// console.log(itemId);
 		var bookPosition = cart.map((i) => {return i.id}).indexOf(itemId);
-		console.log(bookPosition);
+		// console.log(bookPosition)
 		if (cart.length > 1){
-			const newCart = cart.splice(bookPosition, 1);
+			const newCart = [...cart]
+			newCart.splice(bookPosition, 1);
+			console.log(newCart);
 			setCart(newCart);
+			// return;
 		} else if (cart.length === 1){
+			// weird bug where I can't remove an item from a 1-item cart
 			setCart([]);
 		}
-		// return;
 	}
 
 	return (
