@@ -22,10 +22,22 @@ function App() {
 			item
 		])
 	};
+	const removeItem = itemId => {
+		// console.log(itemId);
+		var bookPosition = cart.map((i) => {return i.id}).indexOf(itemId);
+		console.log(bookPosition);
+		if (cart.length > 1){
+			const newCart = cart.splice(bookPosition, 1);
+			setCart(newCart);
+		} else if (cart.length === 1){
+			setCart([]);
+		}
+		// return;
+	}
 
 	return (
 		<ProductContext.Provider value={{ products, addItem }}>
-			<CartContext.Provider value={{ cart }}>
+			<CartContext.Provider value={{ cart, removeItem }}>
 				<div className="App">
 					<Navigation cart={cart} />
 					{/* <Navigation /> */}
